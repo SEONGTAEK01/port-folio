@@ -12,16 +12,50 @@
     <style>
       body {
         font-family: "Noto Sans KR", sans-serif;
+        cursor: none;
       }
       .border-box {
         border: 1px solid black;
         padding: 1cm;
         margin: 1cm;
       }
+      .cursor {
+        width: 10px;
+        height: 10px;
+        background-color: white;
+        border-radius: 50%;
+        margin-bottom: 20rem;
+        animation-name: stretch;
+        animation-duration: 3s;
+        animation-timing-function: ease-out;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-play-state: running;
+      }
+      @keyframes stretch {
+        0% {
+          opacity: 0.2;
+          background-color: black;
+          border-radius: 100%;
+        }
+
+        50% {
+          background-color: purple;
+        }
+
+        100% {
+          background-color: white;
+        }
+      }
+      a:hover {
+        cursor: none;
+      }
     </style>
   </head>
   <body class="bg-gray-100 text-gray-800">
     <div class="min-h-screen flex">
+      <div class="cursor"></div>
+
       <!-- Sidebar -->
       <div class="w-64 p-8 bg-white">
         <h1 class="text-4xl font-semibold mb-6">SeongTaek Hong</h1>
@@ -52,5 +86,18 @@
         </div>
       </div>
     </div>
+
+    <script>
+      const cursorBig = document.querySelector(".cursor");
+
+      const positionElement = (e) => {
+        const mouseY = e.clientY;
+        const mouseX = e.clientX;
+
+        cursorBig.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+      };
+
+      window.addEventListener("mousemove", positionElement);
+    </script>
   </body>
 </html>
